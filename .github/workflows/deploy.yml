@@ -1,0 +1,65 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+          cache-dependency-path: 1.Pengenalan/CV/package-lock.json
+
+      - name: Install dependencies
+        working-directory: 1.Pengenalan/CV
+        run: npm install
+
+      - name: Build CV (Vite)
+        working-directory: 1.Pengenalan/CV
+        env:
+          VITE_BASE_PATH: /${{ github.event.repository.name }}/1.Pengenalan/CV/
+        run: npm run build
+
+      - name: Prepare deployment folder
+        run: |
+          mkdir -p _site/1.Pengenalan/CV
+          cp -r 1.Pengenalan/CV/dist/apps/web/. _site/1.Pengenalan/CV/
+          cp -r 2.Latihan _site/2.Latihan
+          cp index.html _site/index.html
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Web Programming 2026-N</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #f8fafc;
+    }
+    p.subtitle {
+      color: #94a3b8;
+      margin-bottom: 2.5rem;
+    }
+    .cards {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .card {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 1.5rem 2rem;
+      width: 260px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .card:hover {
+      border-color: #6366f1;
+      transform: translateY(-4px);
+    }
+    .card h2 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: #f1f5f9;
+    }
+    .card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .card ul li a {
+      color: #818cf8;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+    .card ul li a:hover { text-decoration: underline; color: #a5b4fc; }
+  </style>
+</head>
+<body>
+  <h1>Web Programming 2026-N</h1>
+  <p class="subtitle">Kumpulan hasil praktikum & latihan</p>
+  <div class="cards">
+    <div class="card">
+      <h2>1. Pengenalan — CV</h2>
+      <ul>
+        <li><a href="1.Pengenalan/CV/">Buka CV App &rarr;</a></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>2. Latihan</h2>
+      <ul>
+        <li><a href="2.Latihan/login.html">login.html</a></li>
+        <li><a href="2.Latihan/test.html">test.html</a></li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
